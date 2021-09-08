@@ -1,6 +1,6 @@
 import re
 from Framework.utils.Logger import get_projectLogger
-from Framework.utils.Constants import BuildingType, get_BUILDINGS, get_XPATHS
+from Framework.utils.Constants import BuildingType, get_BUILDINGS, get_XPATH
 from Framework.utils.SeleniumUtils import get, getElementsAttribute, getCurrentUrl, isVisible
 from Framework.screen.Views import move_to_overview, move_to_village
 
@@ -8,7 +8,7 @@ from Framework.screen.Views import move_to_overview, move_to_village
 # Constants
 logger = get_projectLogger()
 BUILDINGS = get_BUILDINGS()
-XPATH = get_XPATHS()
+XPATH = get_XPATH()
 
 # List of all resource buildings
 ResourceFields = [BuildingType.Woodcutter, BuildingType.ClayPit, BuildingType.IronMine, BuildingType.Cropland]
@@ -199,8 +199,14 @@ def check_building_page_title(driver, bdType):
 def time_to_seconds(currTime):
     """
     Converts time in format hh:mm:ss to seconds
-    :param currTime: time in format hh:mm:ss.
-    :return: equivalent time in seconds.
+
+    Parameters:
+        - currTime (Int): Time in format hh:mm:ss.
+
+    Returns:
+        - Equivalent time in seconds.
     """
+    SECONDS_IN_HOUR = 3600
+    SECONDS_IN_MIN = 3600
     h, m, s = currTime.split(':')
-    return int(h) * 3600 + int(m) * 60 + int(s)
+    return int(h) * SECONDS_IN_HOUR + int(m) * SECONDS_IN_MIN + int(s)

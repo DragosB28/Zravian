@@ -66,6 +66,10 @@ class XPATHCollection(dict):
             'LOGIN_PASS_INPUT': '//*[@id="pass"]',
             'LOGIN_SUBMIT_BTN': '//input[@type="submit"][@value="Log in"]',
             #
+            # Profile
+            #
+            'PROFILE_TRIBE': '//*[@class="details"]//*[contains(text(), "Tribe:")]/..',
+            #
             # Screens
             #
             'ROMAN_TASK_MASTER': '//*[@class="ql1"]',
@@ -106,6 +110,12 @@ class XPATHCollection(dict):
             # DEMOLITION
             'DEMOLITION_BUILDING_OPTION': '//*[contains(text(), "%s")]',
             'DEMOLITION_BTN': '//*[@id="btn_demolish"]',
+            #
+            # Academy
+            #
+            'RESEARCH_TROOP': '//*[contains(text(), "%s")]/../../..//*[contains(text(), "Research")]',
+            # Research errors
+            'RESEARCH_ERR_RESOURCES': '//*[contains(text(), "%s")]/../../..//*[contains(text(), "Not enough resources")]',
         }
         for key, value in self.objects.items():
             self.__setitem__(key, value)
@@ -230,7 +240,7 @@ ACCOUNTInstance = None
 
 def init_data():
     """
-    Initialise constants.
+    Initialises constants by parsing data.json.
     """
     global TROOPSInstance
     global BUILDINGSInstance
@@ -259,8 +269,10 @@ def init_data():
 
 def get_BUILDINGS():
     """
-    Dictionary of buildings to link BuildingType to Building objects.
-    :return: Dictionary.
+    Instantiates BUILDINGSInstance if needed.
+    
+    Returns:
+        - Dictionary linking buildingType to Building(object).
     """
     if BUILDINGSInstance is None:
         init_data()
@@ -269,18 +281,22 @@ def get_BUILDINGS():
 
 def get_TROOPS():
     """
-    Dictionary of troops to link troopType to Troop objects.
-    :return: Dictionary.
+    Instantiates TROOPSInstance if needed.
+    
+    Returns:
+        - Dictionary linking buildingType to Troop(object).
     """
     if TROOPSInstance is None:
         init_data()
     return TROOPSInstance
 
 
-def get_XPATHS():
+def get_XPATH():
     """
-    Class containing XPATHs of all needed WebElements.
-    :return: Object.
+    Instantiate XPATHCollectionInstance if needed.
+    
+    Returns:
+        - Object containing all XPATH constants used.
     """
     global XPATHCollectionInstance
     if XPATHCollectionInstance is None:
@@ -290,7 +306,10 @@ def get_XPATHS():
 
 def get_ACCOUNT():
     """
-    Class containing authentication data.
+    Instantiates TROOPSInstance if needed.
+    
+    Returns:
+        - Object containing account data extracted from account.json.
     """
     global ACCOUNTInstance
     if ACCOUNTInstance is None:
