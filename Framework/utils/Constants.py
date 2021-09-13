@@ -114,6 +114,12 @@ class XPATHCollection(dict):
             # Academy
             #
             'RESEARCH_TROOP': '//*[contains(text(), "%s")]/../../..//*[contains(text(), "Research")]',
+            #
+            # Barracks
+            #
+            'TRAIN_TROOP_TYPE': '//*[contains(text(), "_tf%s")])',
+            'TRAIN_TROOP':'//*[@id="btn_train"]',
+            'TRAIN_TROOP_REQ': '//*contains(text(), "_(_tf%s")]/..//*[contains(text(), "max")]',
             # Research errors
             'RESEARCH_ERR_RESOURCES': '//*[contains(text(), "%s")]/../../..//*[contains(text(), "Not enough resources")]',
         }
